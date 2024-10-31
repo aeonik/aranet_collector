@@ -11,8 +11,7 @@ setproctitle.setproctitle("aranet_history")
 
 # Set up logging
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
+    level=logging.INFO, format="%(levelname)s - %(message)s")
 
 # Device MAC address
 device_mac = "E3:99:D5:D6:06:CA"
@@ -33,15 +32,14 @@ def fetch_records(device_mac, entry_filter):
         logging.info(f"Fetched {len(records.value)} records from the device.")
         return records
     except BleakError as e:
-        logging.error("Aranet: Failed to connect to local device", exc_info=True)
+        logging.error("Aranet: Failed to connect to local device")
         exit(1)
     except TimeoutError as e:
         logging.error(
-            "Operation timed out while connecting to Aranet sensor", exc_info=True
-        )
+            "Operation timed out while connecting to Aranet sensor")
         exit(1)
     except Exception as e:
-        logging.error("Unexpected error occurred", exc_info=True)
+        logging.error("Unexpected error occurred")
         exit(1)
 
 
@@ -114,3 +112,4 @@ def main():
 
 
 if __name__ == "__main__":
+    main()
